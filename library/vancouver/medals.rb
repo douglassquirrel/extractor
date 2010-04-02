@@ -10,3 +10,5 @@ rows.each { |row|
   total   = row.xpath("td[@class='c5']/text()").to_s
   @paragraphs << "#{country}: #{gold} gold, #{silver} silver, #{bronze} bronze, #{total} total"
 }
+
+add_link("Back to home", "/vancouver")
