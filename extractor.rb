@@ -9,7 +9,7 @@ LIBRARY_DIR = Pathname.new("library")
 
 get '/*' do
   content_type 'application/x-yaml', :charset => 'utf-8'
-  path = params[:splat][0] + ".rb"
+  path = (params[:splat][0]).gsub(%r|/$|, "") + ".rb"
   program = Librarian.new.retrieve(path)
   program.run
 end
@@ -35,5 +35,9 @@ class Program
   private
   def fetch(url)
     Nokogiri::HTML(open(url))
+  end
+  
+  def add_link(text, url)
+    @links << {"text" => text, "url" => url}
   end
 end
