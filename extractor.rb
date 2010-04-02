@@ -11,7 +11,7 @@ get '/*' do
   content_type 'application/x-yaml', :charset => 'utf-8'
   path = (params[:splat][0]).gsub(%r|/$|, "") + ".rb"
   program = Librarian.new.retrieve(path)
-  program.run
+  program.run(params)
 end
 
 class Librarian
@@ -27,7 +27,7 @@ class Program
     @title = ""; @paragraphs = []; @links = []
   end
 
-  def run
+  def run(params)
     eval(@text)
     YAML::dump({"title" => @title, "paragraphs" => @paragraphs, "links" => @links, "status_code" => 200})
   end
