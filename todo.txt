@@ -1,0 +1,3 @@
+fluent xpath
+one xpath not two for doc.xpath("//div[@class='contentBlock']")[0].xpath("p")
+discard spike and test-drive
