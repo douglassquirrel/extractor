@@ -36,8 +36,18 @@ class Program
   def fetch(url)
     Nokogiri::HTML(open(url))
   end
+
+  def add_link_from(node)
+    link = {"text" => inner_xml_of(node), "url" => node.xpath("@href").to_s}
+    @links << link
+    return link
+  end
   
   def add_link(text, url)
     @links << {"text" => text, "url" => url}
+  end
+
+  def inner_xml_of(node)
+    node.xpath("child::node()").collect { |n| n.to_s }.join
   end
 end
