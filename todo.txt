@@ -1,4 +1,5 @@
 fix phone version of paragraphs and link text (remove html)
 fluent xpath
-one xpath not two for doc.xpath("//div[@class='contentBlock']")[0].xpath("p")
 discard spike and test-drive
+handle errors cleanly
+truncate and message when too many links
