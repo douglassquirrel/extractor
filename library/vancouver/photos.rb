@@ -9,7 +9,7 @@ descriptions = {
 "/img/00/30/38/97189226_50imgGalTh-tN.jpg" => "Two excited visitors at closing ceremonies, wearing Australia T-shirts and grinning"}
 
 doc = fetch("http://www.vancouver2010.com/")
-nodes = doc.xpath("//div[@class='hTabSlider pictureSlider']//ul")[0].xpath("li")
+nodes = doc.xpath("(//div[@class='hTabSlider pictureSlider']//ul)[1]/li")
 nodes.each { |node|
   description = descriptions[node.xpath("a/img/@src").to_s]
   url = "http://www.vancouver2010.com" + node.xpath("a/@href").to_s

@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'fluentxpath'
 require 'nokogiri'
 require 'open-uri'
 require 'pathname'
@@ -28,6 +29,7 @@ class Program
   end
 
   def run(params)
+    xpath = Fluentxpath::XPath
     eval(@text)
     YAML::dump({"title" => @title, "paragraphs" => @paragraphs, "links" => @links, "status_code" => 200})
   end

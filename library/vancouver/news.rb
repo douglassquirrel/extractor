@@ -1,7 +1,12 @@
+NEWS_LINKS = xpath.that_navigates { to_any_element.with_name("ul")
+                                    and_attributes("class" => "homeNews")
+                                    and_then.to_children.with_name("li")
+                                    and_then.to_children.with_name("a") }
+
 @title = "Vancouver 2010 - Latest News"
 
 doc = fetch("http://www.vancouver2010.com/")
-nodes = doc.xpath("//ul[@class='homeNews']/li/a")
+nodes = doc.xpath(NEWS_LINKS)
 
 nodes.each { |node| 
   link = add_link_from node
