@@ -4,6 +4,6 @@ if !params["access_token"]
 else
   token = params["access_token"]
   @title = "Friends"
-  friends = JSON.parse(open(URI.encode("https://graph.facebook.com/me/friends?access_token=#{token}")).read)
-  @paragraphs << friends.inspect
+  friends = JSON.parse(open(URI.encode("https://graph.facebook.com/me/friends?access_token=#{token}")).read)["data"]
+  friends.each {|friend| add_link(friend["name"], URI.encode("/facebook/person?id=#{friend['id']}&access_token=#{token}")) }
 end
