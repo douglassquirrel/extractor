@@ -5,5 +5,5 @@ else
   token = params["access_token"]
   profile = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}")).read)
   @title = profile["name"]
-  @paragraphs << profile.inspect
+  add_link("News", URI.encode("/facebook/news?id=#{profile['id']}&access_token=#{token}"))
 end
