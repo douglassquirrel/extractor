@@ -9,7 +9,8 @@ else
                                                                     + "&code=#{params['code']}")
   open(token_url).read =~ /^access_token=(.*)$/
   token = $1
-  @paragraphs << "Token is #{token}"
+  @title = "Login successful"
+  add_link("Login successful - go to home page", URI.encode("/facebook/home?access_token=#{token}"))
 end
 
 
