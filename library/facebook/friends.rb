@@ -4,6 +4,6 @@ if !params["access_token"]
 else
   token = params["access_token"]
   @title = "Friends"
-  friends_json = open(URI.encode("https://graph.facebook.com/me?access_token=#{token}")).read
-  @paragraphs << friends_json
+  friends = JSON.parse(open(URI.encode("https://graph.facebook.com/me/friends?access_token=#{token}")).read)
+  @paragraphs << friends.inspect
 end

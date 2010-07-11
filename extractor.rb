@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'fluentxpath'
+require 'json'
 require 'nokogiri'
 require 'open-uri'
 require 'pathname'
