@@ -19,6 +19,7 @@ else
         message += " - #{comment['message']}</li>"
       end
       message += "</ul>"
+    end
     @paragraphs << message
   end
 end
