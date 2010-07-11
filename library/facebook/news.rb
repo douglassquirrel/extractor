@@ -5,5 +5,5 @@ else
   token = params["access_token"]
   @title = "News"
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
-  news.each { |item| @paragraphs << item.inspect }
+  news.each { |item| @paragraphs << "From: #{item['from']['name']} - #{item['message']}" 
 end
