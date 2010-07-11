@@ -6,4 +6,6 @@ else
   profile = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}")).read)
   @title = profile["name"]
   add_link("News", URI.encode("/facebook/news?id=#{profile['id']}&access_token=#{token}"))
+  add_link("Groups", URI.encode("/facebook/groups?id=#{profile['id']}&access_token=#{token}"))
+  add_link("Activities", URI.encode("/facebook/activities?id=#{profile['id']}&access_token=#{token}"))
 end

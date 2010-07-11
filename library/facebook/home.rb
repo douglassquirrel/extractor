@@ -11,4 +11,6 @@ else
   profile = JSON.parse(open(URI.encode("https://graph.facebook.com/me?access_token=#{token}")).read)
   add_link("Friends", URI.encode("/facebook/friends?access_token=#{token}"))
   add_link("News", URI.encode("/facebook/news?id=#{profile['id']}&access_token=#{token}"))
+  add_link("Groups", URI.encode("/facebook/groups?id=#{profile['id']}&access_token=#{token}"))
+  add_link("Activities", URI.encode("/facebook/activities?id=#{profile['id']}&access_token=#{token}"))
 end
