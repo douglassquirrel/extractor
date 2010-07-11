@@ -4,6 +4,6 @@ if !params["access_token"]
 else
   token = params["access_token"]
   @title = "News"
-  news = JSON.parse(open(URI.encode("https://graph.facebook.com/id=#{params['id']}/feed?access_token=#{token}")).read)["data"]
+  news = JSON.parse(open(URI.encode("https://graph.facebook.com/id=#{params['id']}/feed&access_token=#{token}")).read)["data"]
   @paragraphs << news.inspect
 end
