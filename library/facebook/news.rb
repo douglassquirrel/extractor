@@ -11,6 +11,14 @@ else
     if item["link"] 
       message += " <a href='" + URI.encode(item['link']) + "'>#{item['name']}</a>"
     end
+    if item["comments"]
+      message += "<ul>"
+      item["comments"]["data"].each do |comment|
+        message += "<li>"
+        message += "From: <a href='" + URI.encode("/facebook/person?id=#{comment['from']['id']}&access_token=#{token}") + "'>#{comment['from']['name']}</a>"
+        message += " - #{comment['message']}</li>"
+      end
+      message += "</ul>"
     @paragraphs << message
   end
 end
