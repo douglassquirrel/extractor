@@ -5,7 +5,7 @@ if !params["access_token"]
                                                                     + "&scope=user_activities,friends_activities,read_stream")
 else
   token = params["access_token"]
-  profile = JSON.parse(open(URI.encode("https://graph.facebook.com/me")).read)
+  profile = JSON.parse(open(URI.encode("https://graph.facebook.com/me?access_token=#{token}")).read)
   add_link("Friends", URI.encode("/facebook/friends?access_token=#{token}"))
   add_link("News", URI.encode("/facebook/news?id=#{profile['id']}&access_token=#{token}"))
 end
