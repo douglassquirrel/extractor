@@ -6,8 +6,8 @@ else
   @title = "News"
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
   news.each do |item| 
-    message = "From: <a href='" + URI.encode("/facebook/person?id=#{item['from']['id']}&access_token=#{token}") + "'>#{item['from']['name']}</a>"
-    message += " - #{item['message']}"
+    message = "<a href='" + URI.encode("/facebook/person?id=#{item['from']['id']}&access_token=#{token}") + "'>#{item['from']['name']}</a>"
+    message += ": #{item['message']}"
     if item["link"] 
       message += " <a href='" + URI.encode(item['link']) + "'>#{item['name']}</a>"
     end
@@ -15,8 +15,8 @@ else
       message += "<ul>"
       item["comments"]["data"].each do |comment|
         message += "<li>"
-        message += "From: <a href='" + URI.encode("/facebook/person?id=#{comment['from']['id']}&access_token=#{token}") + "'>#{comment['from']['name']}</a>"
-        message += " - #{comment['message']}</li>"
+        message += "<a href='" + URI.encode("/facebook/person?id=#{comment['from']['id']}&access_token=#{token}") + "'>#{comment['from']['name']}</a>"
+        message += ": #{comment['message']}</li>"
       end
       message += "</ul>"
     end
