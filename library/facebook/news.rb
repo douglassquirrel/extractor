@@ -4,9 +4,13 @@ if !params["access_token"]
 else
   token = params["access_token"]
   @title = "News"
-  @paragraphs << "<form action='.' method='post'><p><label for='message'>Write a message:</label>" + \
-                                                    "<input type='text' id='message'/>" + \
-                                                    "<input type='submit'></p></form>"
+  @paragraphs << "<form action='/facebook/news?id=#{params['id']}&access_token=#{token}' method='post'><p>" \
+                                                  + "<label for='message'>Write a message:</label>" \
+                                                  + "<input type='text' id='message'/>" \
+                                                  + "<input type='submit'></p></form>"
+  if params["message"]
+    @paragraphs << "Posted message #{params['message']}"
+  end
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
   news.each do |item| 
     message = "<a href='" + URI.encode("/facebook/person?id=#{item['from']['id']}&access_token=#{token}") + "'>#{item['from']['name']}</a>"
