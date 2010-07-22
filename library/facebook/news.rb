@@ -8,8 +8,8 @@ else
   @paragraphs << "</p><form action='/facebook/news' method='get'><p>" \
                                                   + "<label for='message'>Write a message:</label>" \
                                                   + "<input type='text' id='message' name='message'/>" \
-                                                  + "<input type='text' id='id' name='id' value='#{params['id']}'/>" \
-                                                  + "<input type='text' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
+                                                  + "<input type='hidden' id='id' name='id' value='#{params['id']}'/>" \
+                                                  + "<input type='hidden' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
                                                   + "<input type='submit'/></p></form><p>"
   if params["message"]
     @paragraphs << "Posted message #{params['message']}"
