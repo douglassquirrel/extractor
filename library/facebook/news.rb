@@ -5,7 +5,7 @@ if !params["access_token"]
 else
   token = params["access_token"]
   @title = "News"
-  @paragraphs << "</p><form action='/facebook/news' method='get'><p>" \
+  @paragraphs << "</p><form action='/facebook/news' method='post'><p>" \
                                                   + "<label for='message'>Write a message:</label>" \
                                                   + "<input type='text' id='message'/>" \
                                                   + "<input type='text' id='id' value='#{params['id']}'/>" \
