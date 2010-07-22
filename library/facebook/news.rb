@@ -1,5 +1,6 @@
 if !params["access_token"] 
   @title = "Login needed"
+  @paragraphs << "Your params were: #{params.inspect}"
   add_link("Please log in", "https://graph.facebook.com/oauth/authorize?client_id=131137803591593&redirect_uri=http://unlock.blindpages.com/facebook/login")
 else
   token = params["access_token"]
@@ -9,7 +10,7 @@ else
                                                   + "<input type='text' id='message'/>" \
                                                   + "<input type='hidden' id='id' value='#{params['id']}'/>" \
                                                   + "<input type='hidden' id='access_token' value='" + URI.encode(token) + "'/>" \
-                                                  + "<input type='submit'></p></form>"
+                                                  + "<input type='submit'/></p></form>"
   if params["message"]
     @paragraphs << "Posted message #{params['message']}"
   end
