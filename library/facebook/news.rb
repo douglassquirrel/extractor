@@ -18,7 +18,7 @@ else
   if params["comment_message"]
     open("https://graph.facebook.com/#{params['id']}/feed", :method => :post, \
          :body => "message=#{params['message']}&access_token=#{token}")
-    @paragraphs << "Comment posted! #{params['comment_message']}"
+    @paragraphs << "Comment posted!"
   end    
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
   news.each do |item| 
