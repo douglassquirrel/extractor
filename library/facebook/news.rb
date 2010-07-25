@@ -36,7 +36,7 @@ else
                                                   + "<label for='message'>Comment on this message:</label>" \
                                                   + "<input type='text' id='comment_message' name='comment_message'/>" \
                                                   + "<input type='hidden' id='id' name='id' value='#{params['id']}'/>" \
-                                                  + "<input type='hidden' id='message_id' name='message_id' value='#{news['id']}'/>" \
+                                                  + "<input type='hidden' id='message_id' name='message_id' value='#{news['id'].to_s}'/>" \
                                                   + "<input type='hidden' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
                                                   + "<input type='submit'/></p></form><p>"
   end
