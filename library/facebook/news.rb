@@ -9,12 +9,15 @@ else
                                                   + "<input type='text' id='message' name='message'/>" \
                                                   + "<input type='hidden' id='id' name='id' value='#{params['id']}'/>" \
                                                   + "<input type='hidden' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
-                                                  + "<input type='submit'/></p></form><p>"
+                                                  + "<input type='submit' value='Submit'/></p></form><p>"
   if params["message"]
-    @paragraphs << "Message posted!"
     open("https://graph.facebook.com/#{params['id']}/feed", :method => :post, \
          :body => "message=#{params['message']}&access_token=#{token}")
+    @paragraphs << "Message posted!"
   end
+  if params["comment_message"]
+    @paragraphs << "Comment posted! #{params['comment_message']}"
+  end    
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
   news.each do |item| 
     message = "<a href='" + URI.encode("/facebook/person?id=#{item['from']['id']}&access_token=#{token}") + "'>#{item['from']['name']}</a>"
@@ -38,6 +41,6 @@ else
                                                   + "<input type='hidden' id='id' name='id' value='#{params['id']}'/>" \
                                                   + "<input type='hidden' id='news_item_id' name='news_item_id' value='#{item['id']}'/>" \
                                                   + "<input type='hidden' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
-                                                  + "<input type='submit'/></p></form><p>"
+                                                  + "<input type='submit' value='Submit'/></p></form><p>"
   end
 end
