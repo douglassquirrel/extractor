@@ -12,8 +12,8 @@ else
                                                   + "<input type='submit'/></p></form><p>"
   if params["message"]
     @paragraphs << "Posted message #{params['message']}"
-    Net::HTTP.post_form(URI.parse("https://graph.facebook.com/#{params['id']}/feed"), \
-                        {"access_token" => URI.encode(token), "message" => params['message']})
+    open("https://graph.facebook.com/#{params['id']}/feed", :method => :post, \
+         :body => "message=#{params['message']}&access_token=#{token}")
   end
   news = JSON.parse(open(URI.encode("https://graph.facebook.com/#{params['id']}/feed&access_token=#{token}")).read)["data"]
   news.each do |item| 
