@@ -5,7 +5,7 @@ if !params["access_token"]
                                                                     + "&scope=user_activities,friends_activities,"\
                                                                            + "user_groups,friends_groups,"\
                                                                            + "user_events,friends_events,"\
-                                                                           + "read_stream")
+                                                                           + "read_stream,publish_stream")
 else
   token = params["access_token"]
   profile = JSON.parse(open(URI.encode("https://graph.facebook.com/me?access_token=#{token}")).read)
