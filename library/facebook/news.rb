@@ -11,12 +11,12 @@ else
                                                   + "<input type='hidden' id='access_token' name='access_token' value='" + URI.encode(token) + "'/>" \
                                                   + "<input type='submit' value='Post Message'/></p></form><p>"
   if params["message"]
-    open("https://graph.facebook.com/#{params['news_item_id']}/comments", :method => :post, \
+    open("https://graph.facebook.com/#{params['id']}/feed", :method => :post, \
          :body => "message=#{params['message']}&access_token=#{token}")
     @paragraphs << "Message posted!"
   end
   if params["comment_message"]
-    open("https://graph.facebook.com/#{params['id']}/feed", :method => :post, \
+    open("https://graph.facebook.com/#{params['news_item_id']}/comments", :method => :post, \
          :body => "message=#{params['message']}&access_token=#{token}")
     @paragraphs << "Comment posted!"
   end    
